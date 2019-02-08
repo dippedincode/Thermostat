@@ -10,32 +10,44 @@ $(document).ready(function() {
 
 var thermostat = new Thermostat();
 
-$('#temperature').text(thermostat.showTemp());
-
-$('#increaseTemp').click(function(){
-if (thermostat._powerSaving && thermostat.showTemp() < 25) {
-thermostat.increaseTemp();
   $('#temperature').text(thermostat.showTemp());
-}
-});
 
-$('#decreaseTemp').click(function(){
-  if (thermostat.showTemp() > 10) {
-  thermostat.decreaseTemp();
-  $('#temperature').text(thermostat.showTemp());
-  }
-});
+  $('#increaseTemp').click(function(){
+    if (thermostat._powerSaving && thermostat.showTemp() < 25) {
+    thermostat.increaseTemp();
+    $('#temperature').text(thermostat.showTemp());
+    } else if (!thermostat._powerSaving && thermostat.showTemp() < 32){
+    thermostat.increaseTemp();
+    $('#temperature').text(thermostat.showTemp());
+    };
+  });
 
+  $('#decreaseTemp').click(function(){
+    if (thermostat.showTemp() > 10) {
+    thermostat.decreaseTemp();
+    $('#temperature').text(thermostat.showTemp());
+    }
+  });
 
+  $('#powerSavingOff').click(function(){
+    thermostat.togglePowerSaving();
+  });
 
+  $('#powerSavingOn').click(function(){
+    thermostat.togglePowerSaving();
+    thermostat._temp = 25;
+    $('#temperature').text(thermostat.showTemp());
+  });
 
-
+  $('#resetTemp').click(function(){
+    thermostat.resetTemp();
+    $('#temperature').text(thermostat.showTemp());
+  });
 
 });
 
 </script>
 </head>
-
 <body>
   <section>
   <h1>Thermostat</h1>
@@ -54,6 +66,6 @@ $('#decreaseTemp').click(function(){
   <p>
 
   </section>
-  </<body>
+  </body>
 
   </html>
