@@ -13,8 +13,10 @@ var thermostat = new Thermostat();
 $('#temperature').text(thermostat.showTemp());
 
 $('#increaseTemp').click(function(){
-  thermostat.increaseTemp();
+if (thermostat._powerSaving && thermostat.showTemp() < 25) {
+thermostat.increaseTemp();
   $('#temperature').text(thermostat.showTemp());
+}
 });
 
 $('#decreaseTemp').click(function(){
@@ -23,7 +25,6 @@ $('#decreaseTemp').click(function(){
   $('#temperature').text(thermostat.showTemp());
   }
 });
-
 
 
 
