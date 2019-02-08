@@ -4,6 +4,35 @@
 <html>
 <head>
   <title>Thermostat</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+<script>
+$(document).ready(function() {
+
+var thermostat = new Thermostat();
+
+$('#temperature').text(thermostat.showTemp());
+
+$('#increaseTemp').click(function(){
+  thermostat.increaseTemp();
+  $('#temperature').text(thermostat.showTemp());
+});
+
+$('#decreaseTemp').click(function(){
+  if (thermostat.showTemp() > 10) {
+  thermostat.decreaseTemp();
+  $('#temperature').text(thermostat.showTemp());
+  }
+});
+
+
+
+
+
+
+
+});
+
+</script>
 </head>
 
 <body>
